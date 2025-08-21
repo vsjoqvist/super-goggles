@@ -143,7 +143,7 @@ function update(dt) {
           mousePos,
           coolnames[Math.floor(Math.random() * coolnames.length)],
           Math.max(Math.random() * 40, 3),
-          Math.random() * 400,
+          Math.random() ** 2 * 1000,
           Vector2.ZERO,
           `rgb(
         ${Math.random() * 255}
