@@ -74,9 +74,8 @@ class Ball extends CollisionObject {
     ctx.fillText(
       this.name,
       this.pos.x + this.radius + 10,
-      this.pos.y + this.radius
+      this.pos.y - 15
     );
-    //stroketext
   }
 }
 
