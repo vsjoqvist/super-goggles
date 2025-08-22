@@ -79,7 +79,7 @@ function init(ctx, canvas) {
   mouseCapture(canvas);
   collisionObjects.push(
     objects.push(
-      new Ball(new Vector2(500, 500), "BBBBBOOOOB", 10, 100, Vector2.ZERO)
+      new Ball(new Vector2(500, 500), "KAPTEN WON TON", 10, 100, Vector2.ZERO)
     ) - 1
   );
 
