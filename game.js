@@ -79,13 +79,13 @@ function init(ctx, canvas) {
   mouseCapture(canvas);
   collisionObjects.push(
     objects.push(
-      new Ball(new Vector2(500, 500), "KAPTEN WON TON", 10, 100, Vector2.ZERO)
+      new Ball(new Vector2(500, 500), "KAPTEN WON TON", 70, 10000, Vector2.ZERO, "blue")
     ) - 1
   );
 
   collisionObjects.push(
     objects.push(
-      new Ball(new Vector2(200, 200), "BANANNANAN", 10, 100, Vector2.ZERO)
+      new Ball(new Vector2(200, 200), "BANANNANAN", 10, 100, Vector2.ZERO, "green")
     ) - 1
   );
 

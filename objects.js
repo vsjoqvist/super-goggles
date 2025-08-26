@@ -1,6 +1,5 @@
 class Object {
-  constructor(pos) {
-    this.pos = pos;
+  constructor() {
   }
 
   //Runs after game.js has loaded
@@ -14,7 +13,8 @@ class Object {
 //Only circles
 class CollisionObject extends Object {
   constructor(pos, radius, mass, vel) {
-    super(pos);
+    super()
+    this.pos = pos;
     this.radius = radius;
     this.mass = mass;
     this.vel = vel;
@@ -26,6 +26,10 @@ class CollisionObject extends Object {
     //Inefficient, every collsion is checked twice
     collisionObjects.forEach((n) => {
       let other = objects[n];
+
+      if (this.pos == other.pos && this.mass == other.mass) {
+        return;
+      }
 
       //Collided
       let distance = this.pos.distance(other.pos);
@@ -40,6 +44,16 @@ class CollisionObject extends Object {
         //Update velocities
         this.vel = this.vel.subtract(l.scale(v * other.mass));
         other.vel = other.vel.add(l.scale(v * this.mass));
+
+        const overlap = this.radius + other.radius - distance;
+        if (overlap > 0) {
+          // distribute correction based on mass
+          const w1 = other.mass / (this.mass + other.mass);
+          const w2 = this.mass / (this.mass + other.mass);
+
+          this.pos = this.pos.subtract(l.scale(overlap * w1));
+          other.pos = other.pos.add(l.scale(overlap * w2));
+        }
       }
     });
   }
@@ -71,11 +85,7 @@ class Ball extends CollisionObject {
 
     ctx.font = "30px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText(
-      this.name,
-      this.pos.x + this.radius + 10,
-      this.pos.y + 15
-    );
+    ctx.fillText(this.name, this.pos.x + this.radius + 10, this.pos.y + 15);
   }
 }
 
